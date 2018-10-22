@@ -15,11 +15,16 @@ export default class App extends Component {
         });
     }
 
-
     constructor(props) {
         super(props);
 
         this.events = [
+            "VKWebAppGetPersonalCard",
+            "VKWebAppClose",
+            "VKWebAppClose_Success",
+            "VKWebAppClose_Failed",
+            "VkWebAppClose_Success_Payload",
+            "VKWebAppGetPersonalCard",
             "VKWebAppGetAuthToken",
             "VKWebAppCallAPIMethod",
             "VKWebAppGetGeodata",
@@ -37,7 +42,22 @@ export default class App extends Component {
             "VKWebAppOpenApp",
             "VKWebAppOpenQR",
             "VKWebAppSetViewSettings",
+
         ];
+    }
+
+    componentWillMount() {
+        VKConnect.subscribe((e) => {
+            const detail = (e.detail || e);
+            const type = detail.type;
+            const msg = detail.data;
+
+            if (type === "VKWebAppUpdateConfig") {
+                if (typeof msg.scheme !== 'undefined') {
+                    document.body.setAttribute('scheme', msg.scheme);
+                }
+            }
+        });
     }
 
     render() {
@@ -49,7 +69,7 @@ export default class App extends Component {
                     </PanelHeader>
                     <Group title="Data">
                         <FormLayout>
-                            <Textarea id='data' placeholder='{"method": "users.get", "params": {}}'/>
+                            <Textarea id='data' placeholder='{"status": "success", "payload": "blabla"}'/>
                         </FormLayout>
                     </Group>
 

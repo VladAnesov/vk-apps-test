@@ -2,7 +2,7 @@
   "name": "vkapps-connect-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tsivarev.github.io/vk-apps-test/",
+  "homepage": "https://vladanesov.github.io/vk-apps-test/",
   "dependencies": {
     "@vkontakte/vkui": "^2.9.4",
     "@vkontakte/vkui-connect": "^1.0.0",
@@ -14,6 +14,7 @@
   },
   "scripts": {
     "start": "PORT=10889 react-scripts start",
+    "starthttps": "HTTPS=true PORT=10889 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
